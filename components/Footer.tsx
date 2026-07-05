@@ -1,3 +1,6 @@
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaMicrosoft } from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="bg-teal-600 text-white">
@@ -9,19 +12,21 @@ export default function Footer() {
           </h3>
 
           <a
-            href="mailto:info@example.com"
-            className="hover:underline"
+            href="mailto:marcoandruth@outlook.com"
+            className="flex items-center gap-2 hover:underline"
           >
+            <FaMicrosoft className="text-xl" />
             marcoandruth@outlook.com
           </a>
 
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/people/MR-Cleaning-Services-and-Handyman/61574263725747/?mibextid=wwXIfr"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline"
+            className="flex items-center gap-2 hover:underline"
           >
-            Facebook
+            <FaFacebookSquare className="text-xl" />
+            Our Facebook Page
           </a>
 
           <p className="text-sm text-white/80">
@@ -29,6 +34,7 @@ export default function Footer() {
           </p>
 
         </div>
+        
       </div>
     </footer>
   );
