@@ -1,12 +1,81 @@
 import Link from "next/link";
 
 const services = [
-  "Regular Cleaning",
-  "Deep Cleaning",
-  "Post-Construction Cleaning",
-  "Move In / Move Out",
-  "Monthly Cleaning",
-  "Handyman Works",
+  {
+    title: "Regular Cleaning",
+    description:
+      "Keep your home fresh and comfortable with routine cleaning services designed to maintain a clean living space.",
+    items: [
+      "Bathrooms",
+      "Kitchen",
+      "Dusting",
+      "Vacuuming",
+      "Mopping floors",
+    ],
+  },
+  {
+    title: "Deep Cleaning",
+    description:
+      "A detailed top-to-bottom cleaning that focuses on areas often missed during regular cleaning.",
+    items: [
+      "Bathroom exhaust fans",
+      "Bathroom light fixtures",
+      "Baseboards",
+      "Toilets, tubs & showers",
+      "Kitchen cabinets (exterior)",
+      "Sofas",
+      "Linen changes",
+      "Window blinds",
+      "Laundry",
+    ],
+  },
+  {
+    title: "Post-Construction Cleaning",
+    description:
+      "We'll remove construction dust and debris so your newly renovated space is clean, safe, and move-in ready.",
+    items: [
+      "Construction dust removal",
+      "Vacuuming",
+      "Mopping floors",
+      "Kitchen cleaning",
+      "Bathroom cleaning",
+      "Final detail cleaning",
+    ],
+  },
+  {
+    title: "Move In / Move Out",
+    description:
+      "Whether you're moving in or out, we'll thoroughly clean the property to leave it spotless.",
+    items: [
+      "Kitchen cleaning",
+      "Bathroom sanitization",
+      "Cabinets & drawers",
+      "Baseboards",
+      "Vacuuming & mopping",
+    ],
+  },
+  {
+    title: "Recurring Cleaning",
+    description:
+      "Enjoy a consistently clean home with scheduled cleaning visits that fit your lifestyle.",
+    items: [
+      "Weekly",
+      "Bi-weekly",
+      "Monthly",
+      "Customized schedules",
+    ],
+  },
+  {
+    title: "Handyman Services",
+    description:
+      "Reliable handyman services for everyday home maintenance and repair projects.",
+    items: [
+      "General repairs",
+      "Home maintenance",
+      "Fixture installation",
+      "Small improvement projects",
+    ],
+  },
 ];
 
 export default function ServicesPage() {
@@ -29,10 +98,22 @@ export default function ServicesPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2">
           {services.map((service) => (
             <div
-              key={service}
-              className="flex min-h-36 items-start justify-center bg-white px-6 py-6 text-center sm:min-h-40"
+              key={service.title}
+              className="rounded-lg bg-white p-6 shadow-sm"
             >
-              <h2 className="text-xl font-bold sm:text-2xl">{service}</h2>
+              <h2 className="text-2xl font-bold">
+                {service.title}
+              </h2>
+
+              <p className="mt-3 text-left text-gray-700">
+                {service.description}
+              </p>
+
+              <ul className="mt-4 list-disc space-y-1 pl-5 text-left">
+                {service.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

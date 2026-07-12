@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,10 +16,14 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
 
             {/* Logo Placeholder */}
-            <div className="w-14 h-14 bg-white/20 rounded-lg flex items-center justify-center">
-              <span className="text-xs text-white">
-                Logo
-              </span>
+            <div className="relative h-15 w-20 overflow-hidden rounded-lg">
+              <Image
+                src="/images/logo.png"
+                alt="M&R Cleaning Services Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
 
             {/* Business Title */}
@@ -54,6 +59,7 @@ export default function Navbar() {
 
           {/* MOBILE MENU BUTTON */}
           <button
+            type="button"
             className="md:hidden flex flex-col gap-1"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
