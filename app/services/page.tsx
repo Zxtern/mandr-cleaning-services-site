@@ -10,7 +10,7 @@ const services = [
       "Kitchen",
       "Dusting",
       "Vacuuming",
-      "Mopping floors",
+      "Floor sanitation",
     ],
   },
   {
@@ -36,7 +36,7 @@ const services = [
     items: [
       "Construction dust removal",
       "Vacuuming",
-      "Mopping floors",
+      "Floor sanitation",
       "Kitchen cleaning",
       "Bathroom cleaning",
       "Final detail cleaning",

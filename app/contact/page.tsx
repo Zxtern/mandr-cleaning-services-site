@@ -1,4 +1,55 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+
 export default function ContactUsPage() {
+
+const [status, setStatus] = useState("");
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [isError, setIsError] = useState(false);
+
+async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault();
+
+  setIsSubmitting(true);
+  setStatus("");
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  const data = {
+    fullName: formData.get("fullName"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    service: formData.get("service"),
+    message: formData.get("message"),
+  };
+
+  try {
+    const response = await fetch("/api/quote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Unable to send message");
+    }
+    setIsError(false);
+    setStatus("Thank you! Your quote request has been sent.");
+    form.reset();
+  } catch {
+    setIsError(true);
+    setStatus(
+      "We could not send your request. Please try again or contact us directly."
+    );
+  } finally {
+    setIsSubmitting(false);
+  }
+}
+
   return (
     <main className="bg-cyan-50 text-[#034646]">
       {/* Header */}
@@ -23,27 +74,42 @@ export default function ContactUsPage() {
               Request a Quote
             </h2>
 
-            <form className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block font-medium">
                     Full Name *
                   </label>
-                  <input className="w-full border-2 border-gray-300 px-3 py-2" />
+                  <input 
+                    type="text" 
+                    name="fullName"
+                    required 
+                    className="w-full border-2 border-gray-300 px-3 py-2"
+                  />
                 </div>
 
                 <div>
                   <label className="mb-2 block font-medium">
                     Email Address *
                   </label>
-                  <input className="w-full border-2 border-gray-300 px-3 py-2" />
+                  <input 
+                    type="email" 
+                    name="email" 
+                    required 
+                    className="w-full border-2 border-gray-300 px-3 py-2" 
+                  />
                 </div>
 
                 <div>
                   <label className="mb-2 block font-medium">
-                    Phone Number
+                    Phone Number *
                   </label>
-                  <input className="w-full border-2 border-gray-300 px-3 py-2" />
+                  <input 
+                    type="tel" 
+                    name="phone" 
+                    required 
+                    className="w-full border-2 border-gray-300 px-3 py-2" 
+                    />
                 </div>
 
                 <div>
@@ -51,7 +117,10 @@ export default function ContactUsPage() {
                   <label className="mb-2 block font-medium">
                     Service Needed
                   </label>
-                  <select className="w-full border-2 border-gray-300 px-3 py-2">
+                  <select 
+                    name="service" 
+                    className="w-full border-2 border-gray-300 px-3 py-2"
+                  >
                     <option value="">Select a service</option>
                     <option value="regular">Regular Cleaning</option>
                     <option value="deep">Deep Cleaning</option>
@@ -67,15 +136,26 @@ export default function ContactUsPage() {
                 <label className="mb-2 block font-medium">
                   Message *
                 </label>
-                <textarea className="h-28 w-full border-2 border-gray-300 px-3 py-2" />
+                <textarea name="message" required className="h-28 w-full border-2 border-gray-300 px-3 py-2" />
               </div>
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="bg-yellow-200 px-8 py-3 font-semibold"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
+              {status && (
+                <p
+                  className={`rounded-md px-4 py-3 font-medium text-white ${
+                    isError ? "bg-red-600" : "bg-green-600"
+                  }`}
+                >
+                  {isError ? "✕ " : "✓ "}
+                  {status}
+                </p>
+              )}
             </form>
           </div>
 
