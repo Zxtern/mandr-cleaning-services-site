@@ -39,7 +39,7 @@ export default function Navbar() {
           </div>
 
           {/* DESKTOP NAVIGATION */}
-          <div className="hidden md:flex items-center gap-8 font-medium">
+          <div className="hidden md:flex items-center gap-8 font-bold">
             <Link href="/" className="hover:text-gray-100 transition">
               Home
             </Link>

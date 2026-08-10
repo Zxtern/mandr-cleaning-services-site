@@ -128,6 +128,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
                     <option value="move-in-out">Move In / Move Out</option>
                     <option value="monthly">Monthly Cleaning</option>
                     <option value="handyman">Handyman Works</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
               </div>
@@ -174,7 +175,7 @@ async function handleSubmit(event: FormEvent<HTMLFormElement>) {
   
               <p className="mt-4 text-sm uppercase tracking-wide">Email</p>
               <a href="mailto:marcoandruth1@outlook.com" className="font-bold hover:underline">
-                marcoandruth1@outlook.com
+                marcoandruth@outlook.com
               </a>
             </div>
 
