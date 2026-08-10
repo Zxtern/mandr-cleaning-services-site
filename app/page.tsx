@@ -55,7 +55,7 @@ export default function Home() {
             alt="Cleaning Service"
             width={500}
             height={400}
-            className="absolute bottom-[-80px] left-10 h-40 w-4/5 max-w-sm object-cover shadow-xl md:h-48"
+            className="absolute bottom-[-20px] left-1/2 h-40 w-4/5 max-w-sm -translate-x-1/2 object-cover shadow-xl md:bottom-[-80px] md:left-10 md:h-48 md:translate-x-0"
           />
 
         </div>
